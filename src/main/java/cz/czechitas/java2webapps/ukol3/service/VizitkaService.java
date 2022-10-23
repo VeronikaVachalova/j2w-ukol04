@@ -82,8 +82,15 @@ public class VizitkaService {
   public List<Vizitka> getAll() {
     return seznamVizitek;
   }
-
   public Vizitka getById(int id) {
     return seznamVizitek.get(id);
   }
+
+  public void append(Vizitka vizitka) {
+      seznamVizitek.add(vizitka);
+        }
+
+  public void delete (int id){
+     seznamVizitek.remove(id);
+        }
 }

@@ -5,21 +5,48 @@
     [#include "_common/head.ftlh"]
 </head>
 <body>
+
 <div class="seznam">
     [#list seznam as vizitka]
+
     <a href="/detail/${vizitka?index}">
-        <div class="vizitka">
-            <div class="jmeno">Dita (Přikrylová) Formánková</div>
-            <div class="firma">Czechitas z. s.</div>
+<div class="vizitka">
+
+            <form action="/delete" method="post">
+            <button type="submit" class="btn btn-secondary"><i class="bi bi-person-x-fill" role="img" aria-label="Smazat"></i></button>
+            <input type="hidden" name="id" value="${vizitka?index}">
+            </form>
+
+[#if vizitka.jmeno?has_content]
+<div class="jmeno">${vizitka.jmeno}</div>
+[/#if]
+
+[#if vizitka.firma?has_content]
+<div class="firma">${vizitka.firma}</div>
+[/#if]
+
             <div class="udaje">
                 <div class="adresa">
-                    <div>Václavské náměstí 837/11</div>
-                    <div><span>11000</span> Praha 1</div>
+[#if vizitka.ulice?has_content]
+<div>${vizitka.ulice}</div>
+[/#if]
+[#if vizitka.obecPsc?has_content]
+<div><span>${vizitka.obecPsc}</span></div>
+[/#if]
                 </div>
                 <div class="kontakty">
-                    <div><i class="bi bi-at"></i> dita@example.com</div>
-                    <div><i class="bi bi-phone"></i> +420 800123456</div>
-                    <div><i class="bi bi-globe"></i> www.czechitas.cz</div>
+[#if vizitka.email?has_content]
+<div><i class="bi bi-at"></i> ${vizitka.email}</div>
+[/#if]
+
+[#if vizitka.telefon?has_content]
+<div><i class="bi bi-phone"></i> ${vizitka.telefon}</div>
+[/#if]
+
+[#if vizitka.web?has_content]
+<div><i class="bi bi-globe"></i> ${vizitka.web}</div>
+[/#if]
+
                 </div>
             </div>
         </div>
